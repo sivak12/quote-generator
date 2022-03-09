@@ -11,23 +11,11 @@ mongoose.connect(db_conn, {
   useUnifiedTopology: true,
 });
 
-//user: siva
-//password: reality123
-
 app.set("view engine", "ejs");
 
 let quotes_list = [];
 
 app.get("/", async (req, res) => {
-  // if (!quotes_fetched) {
-  //     quotes_list = await Quote.find();
-  //     quotes_fetched = true;
-  // }
-  //quotes_list = await Quote.find();
-  //const rand = Math.floor(Math.random() * quotes_list.length);
-  //const quote = quotes_list[rand];
-
-  // find a random quote
   const numQuotes = await Quote.estimatedDocumentCount();
   const rand = Math.floor(Math.random() * numQuotes);
   const quote = await Quote.findOne().skip(rand);
